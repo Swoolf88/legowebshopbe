@@ -23,6 +23,7 @@ public class CartController {
         this.cartService = cartService;
     }
 
+    //get cart
     @GetMapping("/cart")
     public List<Cart> getAllCarts(){
         return  cartService.getAllCart();
