@@ -1,7 +1,6 @@
 package com.swoolf.lego.repository;
 
 import com.swoolf.lego.entity.CartEntity;
-import com.swoolf.lego.entity.EmployeeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

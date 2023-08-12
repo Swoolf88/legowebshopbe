@@ -1,20 +1,14 @@
 package com.swoolf.lego.controller;
 
 import com.swoolf.lego.model.Cart;
-import com.swoolf.lego.model.Employee;
 import com.swoolf.lego.services.CartService;
-import com.swoolf.lego.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import static com.sun.tools.doclint.Entity.image;
 import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 
 @CrossOrigin(origins = "http://localhost:3000")

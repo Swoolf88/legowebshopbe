@@ -1,15 +1,10 @@
 package com.swoolf.lego.services;
 
-import com.sun.tools.doclint.Entity;
 import com.swoolf.lego.entity.CartEntity;
-import com.swoolf.lego.entity.EmployeeEntity;
 import com.swoolf.lego.model.Cart;
-import com.swoolf.lego.model.Employee;
 import com.swoolf.lego.repository.CartRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;

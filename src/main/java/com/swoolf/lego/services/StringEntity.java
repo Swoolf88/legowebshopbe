@@ -1,6 +1,6 @@
 package com.swoolf.lego.services;
 
-import com.swoolf.lego.entity.EmployeeEntity;
+import com.swoolf.lego.entity.LegoEntity;
 
-public class StringEntity extends EmployeeEntity {
+public class StringEntity extends LegoEntity {
 }
