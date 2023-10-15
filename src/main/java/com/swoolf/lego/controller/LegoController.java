@@ -5,6 +5,8 @@ import com.swoolf.lego.services.LegoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,23 +27,29 @@ public class LegoController {
         this.legoService = legoService;
     }
 
-    @PostMapping("/legos")
-    public Lego createLego(@RequestBody Lego lego){
-        return legoService.createLego(lego);
-    }
 
-    @PostMapping("/addLego")
-    public Lego saveLego(@RequestParam("image") String image,
-                         @RequestParam("description") String description,
-                         @RequestParam("condition") String condition,
-                         @RequestParam("each") String each,
-                         @RequestParam("quantity") String quantity,
-                         @RequestParam("subtotal") String subtotal) throws IOException {
-        return legoService.saveLegoToDB(image, description, condition, each, quantity, subtotal);
+
+    @RequestMapping(value ="/addLego", method = RequestMethod.POST)
+    public Lego saveLego(@RequestParam("image") MultipartFile image,
+                         @RequestParam("firstName") String firstName,
+                         @RequestParam("lastName") String lastName,
+                         @RequestParam("emailId") String emailId ) throws IOException {
+        return legoService.saveLegoToDB(image, firstName, lastName, emailId);
+//                         @RequestParam("description") String description,
+//                         @RequestParam("condition") String condition,
+//                         @RequestParam("each") String each,
+//                         @RequestParam("quantity") String quantity,
+//                         @RequestParam("subtotal") String subtotal) throws IOException {
+//        return legoService.saveLegoToDB(image, description, condition, each, quantity, subtotal);
     }
     @GetMapping("/legos")
     public List<Lego> getAllLegos(){
         return  legoService.getAllLegos();
+    }
+
+    @RequestMapping(path="/legos", method = RequestMethod.POST)
+    public Lego createLego(@RequestBody Lego lego){
+        return legoService.createLego(lego);
     }
 
     @DeleteMapping("/legos/{id}")
@@ -62,14 +70,18 @@ public class LegoController {
 
     @PutMapping(value = {"/legos/{id}"}, consumes = {MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<Lego> updateLego(@PathVariable Long id,
-                                           @RequestParam("image") String image,
-                                           @RequestParam("description") String description,
-                                           @RequestParam("condition") String condition,
-                                           @RequestParam("each") String each,
-                                           @RequestParam("quantity") String quantity,
-                                           @RequestParam("subtotal") String subtotal) throws IOException {
+                                           @RequestParam("image") MultipartFile image,
+                                           @RequestParam("firstName") String firstName,
+                                           @RequestParam("lastName") String lastName,
+                                           @RequestParam("emailId") String emailId ) throws IOException {
+//                                           @RequestParam("description") String description,
+//                                           @RequestParam("condition") String condition,
+//                                           @RequestParam("each") String each,
+//                                           @RequestParam("quantity") String quantity,
+//                                           @RequestParam("subtotal") String subtotal) throws IOException {
         Lego lego = new Lego();
-         lego = legoService.updateLego(id, image, description, condition, each, quantity, subtotal);
+//         lego = legoService.updateLego(id, image, description, condition, each, quantity, subtotal);
+        lego = legoService.updateLego(id, image, firstName, lastName, emailId);
          return ResponseEntity.ok(lego);
     }
 

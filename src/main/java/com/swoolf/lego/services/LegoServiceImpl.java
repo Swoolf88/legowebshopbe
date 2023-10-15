@@ -5,6 +5,9 @@ import com.swoolf.lego.model.Lego;
 import com.swoolf.lego.repository.LegoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,8 +35,9 @@ public class LegoServiceImpl implements LegoService {
         List<Lego> legos = legoEntities
                 .stream()
                 .map(emp -> new Lego(emp.getId()
-                        , emp.getImage(), emp.getDescription(), emp.getCondition(), emp.getEach(),
-                        emp.getQuantity(), emp.getSubtotal()))
+//                        , emp.getImage(), emp.getDescription(), emp.getCondition(), emp.getEach(),
+//                        emp.getQuantity(), emp.getSubtotal()))
+                        ,emp.getImage(), emp.getFirstName(), emp.getLastName(),emp.getEmailId()))
                 .collect(Collectors.toList());
         return legos;
     }
@@ -55,43 +59,60 @@ public class LegoServiceImpl implements LegoService {
     }
 
     @Override
-    public Lego updateLego(Long id, String image,
-                           String description, String condition, String each,
-                           String quantity, String subtotal) {
+    public Lego updateLego(Long id, MultipartFile image,
+//                           String description, String condition, String each,
+//                           String quantity, String subtotal) {
+                           String firstName, String lastName, String emailId) throws IOException {
         LegoEntity legoEntity
                 = legoRepository.findById(id).get();
         Lego lego = new Lego();
         lego.setId(id);
-        lego.setDescription(description);
-        lego.setCondition(condition);
-        lego.setImage(image);
-        lego.setEach(each);
-        lego.setQuantity(quantity);
-        lego.setSubtotal(subtotal);
+        lego.setImage(image.getBytes());
+        lego.setFirstName(firstName);
+        lego.setLastName(lastName);
+        lego.setEmailId(emailId);
+//        lego.setDescription(description);
+//        lego.setCondition(condition);
+//        lego.setImage(image);
+//        lego.setEach(each);
+//        lego.setQuantity(quantity);
+//        lego.setSubtotal(subtotal);
         BeanUtils.copyProperties(lego, legoEntity);
         legoRepository.save(legoEntity);
         return lego;
     }
 
     @Override
-    public Lego saveLegoToDB(String image,
-                             String description, String condition, String each,
-                             String quantity, String subtotal) {
+    public Lego saveLegoToDB(MultipartFile image,
+//                             String description, String condition, String each,
+//                             String quantity, String subtotal) {
+//        Lego lego = new Lego();
+//        LegoEntity legoEntity = new LegoEntity();
+//        BeanUtils.copyProperties(lego, legoEntity);
+//        lego.setDescription(description);
+//        lego.setCondition(condition);
+//        lego.setImage(image);
+//        lego.setEach(each);
+//        lego.setQuantity(quantity);
+//        lego.setSubtotal(subtotal);
+//        legoEntity.setDescription(description);
+//        legoEntity.setCondition(condition);
+//        legoEntity.setImage(image);
+//        legoEntity.setEach(each);
+//        legoEntity.setQuantity(quantity);
+//        legoEntity.setSubtotal(subtotal);
+                             String firstName, String lastName, String emailId) throws IOException {
         Lego lego = new Lego();
         LegoEntity legoEntity = new LegoEntity();
         BeanUtils.copyProperties(lego, legoEntity);
-        lego.setDescription(description);
-        lego.setCondition(condition);
-        lego.setImage(image);
-        lego.setEach(each);
-        lego.setQuantity(quantity);
-        lego.setSubtotal(subtotal);
-        legoEntity.setDescription(description);
-        legoEntity.setCondition(condition);
-        legoEntity.setImage(image);
-        legoEntity.setEach(each);
-        legoEntity.setQuantity(quantity);
-        legoEntity.setSubtotal(subtotal);
+        lego.setFirstName(firstName);
+        lego.setLastName(lastName);
+        lego.setEmailId(emailId);
+        lego.setImage(image.getBytes());
+        legoEntity.setFirstName(firstName);
+        legoEntity.setLastName(lastName);
+        legoEntity.setEmailId(emailId);
+        legoEntity.setImage(image.getBytes());
         legoRepository.save(legoEntity);
         return lego;
     }

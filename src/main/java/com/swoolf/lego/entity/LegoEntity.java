@@ -1,6 +1,7 @@
 package com.swoolf.lego.entity;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 
@@ -12,10 +13,14 @@ public class LegoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String image;
-    private String description;
-    private String condition;
-    private String each;
-    private String quantity;
-    private String subtotal;
+    @Lob
+    private byte[] image;
+    private String firstName;
+    private String lastName;
+    private String emailId;
+//    private String description;
+//    private String condition;
+//    private String each;
+//    private String quantity;
+//    private String subtotal;
 }
