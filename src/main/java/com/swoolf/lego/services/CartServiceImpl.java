@@ -4,8 +4,10 @@ import com.swoolf.lego.entity.CartEntity;
 import com.swoolf.lego.model.Cart;
 import com.swoolf.lego.repository.CartRepository;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManagerFactory;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +16,8 @@ import java.util.stream.Collectors;
 public class CartServiceImpl implements CartService{
 
     private CartRepository cartRepository;
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
 
     public CartServiceImpl(CartRepository cartRepository){
         this.cartRepository = cartRepository;
