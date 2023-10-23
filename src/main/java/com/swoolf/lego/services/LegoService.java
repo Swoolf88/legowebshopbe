@@ -11,16 +11,16 @@ public interface LegoService {
 
     List<Lego> getAllLegos();
 
-    boolean deleteLego(Long id);
+    boolean deleteLego(Long id) throws IOException;
 
     Lego getLegoById(Long id);
 
 //    Lego saveLegoToDB(String image, String description, String condition,
 //                      String each, String quantity, String subtotal);
-Lego saveLegoToDB(MultipartFile image, String firstName, String lastName,
+Lego saveLegoToDB(String fileName, MultipartFile image, String firstName, String lastName,
                   String emailId) throws IOException;
 //    Lego updateLego(Long id, String image, String description, String condition,
 //                    String each, String quantity, String subtotal);
-Lego updateLego(Long id, MultipartFile image, String firstName, String lastName,
+Lego updateLego(Long id, String fileName, MultipartFile image, String firstName, String lastName,
                     String emailId) throws IOException;
 }

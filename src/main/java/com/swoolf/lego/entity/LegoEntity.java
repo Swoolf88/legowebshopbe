@@ -1,20 +1,29 @@
 package com.swoolf.lego.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "employees")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Table(name = "legos")
 public class LegoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Lob
-    private byte[] image;
+    @Column(nullable = true, length = 64)
+    private String image;
     private String firstName;
     private String lastName;
     private String emailId;
