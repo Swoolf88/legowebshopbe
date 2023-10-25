@@ -15,6 +15,6 @@ ARG JAR_FILE=lego.jar
 WORKDIR /opt/app
 
 # Copy the spring-boot-api-tutorial.jar from the maven stage to the /opt/app directory of the current stage.
-COPY --from=maven /usr/src/app/target/${JAR_FILE} /opt/app/
+COPY --from=maven ./target/${JAR_FILE} /opt/app/
 
 ENTRYPOINT ["java","-jar","lego.jar"]
